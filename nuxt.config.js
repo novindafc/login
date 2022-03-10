@@ -34,42 +34,70 @@ export default {
     // https://go.nuxtjs.dev/buefy
     'nuxt-buefy',
     '@nuxtjs/axios',
-    '@nuxtjs/auth-next',
+    // '@nuxtjs/auth-next',
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
-  router: {
-     middleware: ['auth']
-  },
-  auth: {
-    cookie: { options: { secure: process.env.NODE_ENV == 'production' } },
-    redirect: {
-      login: '/login',
-      logout: '/',
-      callback: '/login',
-      home: '/default'
-    },
-    strategies: {
-      local: {
-        token: {
-          property: 'token',
-          global: true,
-          // required: true,
-          // type: 'Bearer'
-        },
-        user: {
-          property: 'user',
-          // autoFetch: true
-        },
-        endpoints: {
-          login: { url: '/auth/login', method: 'post' },
-          logout: { url: '/auth/logout', method: 'post' },
-          user: { url: '/auth/email/request', method: 'get' }
-        }
-      }
-    }
-  },
+  // router: {
+  //    middleware: ['auth']
+  // },
+  // auth: {
+   
+  //   redirect: {
+  //     login: "/login/",
+  //     logout: "/login/",
+  //     home: "/",
+  //   },
+  //   strategies: {
+  //     local: {
+  //       token: {
+  //         property: 'token',
+  //         global: true,
+  //         // required: true,
+  //         // type: 'Bearer'
+  //       },
+  //       user: {
+  //         property: false,
+  //         // autoFetch: true
+  //       },
+  //       endpoints: {
+  //         login: { url: '/auth/login', method: 'post' , propertyName: 'token'  },
+  //         logout: { url: '/auth/logout', method: 'post'},
+  //         user: { url: '/users/me', method: 'get' ,propertyName: false  }
+  //       }
+  //     }
+  //   }
+  // },
+//   auth: {
+//     redirect: {
+//         login: "/login",
+//         logout: "/login",
+//         home: "/index"
+//     },
+//     watchLoggedIn: true,
+//     strategies: {
+//         local: {
+//             token: {
+//                 property: "jwt"
+//             },
+//             user: {
+//                 property: false
+//             },
+//             endpoints: {
+//                 login: {
+//                     url: "auth/local",
+//                     method: "post"
+//                 },
+//                 user: {
+//                     url: "users/me",
+//                     method: "get"
+//                 },
+//                 logout: false
+//             }
+//         }
+//     }
+// },
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
     baseURL: 'http://localhost:8055',

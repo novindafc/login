@@ -8,12 +8,12 @@
     </h2>
     <section>
         <b-field label="Email">
-            <b-input name ='email' v-model="login.username" type="email"  maxlength="30" >
+            <b-input v-model="login.email" type="email"  maxlength="30" >
             </b-input>
         </b-field>
 
         <b-field label="Password">
-            <b-input name= 'password' v-model="login.password" type="password" maxlength="30" ></b-input>
+            <b-input v-model="login.password" type="password" maxlength="30" ></b-input>
         </b-field>
        <b-button type="submit" variant="primary" @click="userLogin()">Log in</b-button>
         
@@ -26,10 +26,11 @@
 <script>
 export default {
     name :"LoginPage",
+    // auth: "guest",
   data() {
     return {
       login: {
-        username: '',
+        email: '',
         password: ''
       }
     }
@@ -37,15 +38,18 @@ export default {
   methods: {
     async userLogin() {
       try {
-        const response = await this.$auth.loginWith('http://localhost:8055/auth/login', { data: this.login })
-        console.log(response)
+       await this.$auth.loginWith('local', { data: this.login })
+        .then(response => {
+        console.log(response);
+        this.$router.push(this.localePath({ path: 'index' }))
+    })
        
         
     //     this.$auth.strategy.token.status().valid()
     //   window.location = 'http://localhost:3000/index'
         // })
       
-      } catch (err) {
+      }catch (err) {
         console.log(err)
       }
     }
